@@ -1,14 +1,22 @@
 from google.cloud import bigquery
 
-# Connect to the BigQuery client
-client_bq = bigquery.Client(project='dash-beta-e61d0')
-
 # Retrieve the database containing relevant information
-dataset_id = 'dash-beta-e61d0.dash_beta_database'
+project_id = 'dash-beta-e61d0'
+dataset_id = 'dash_beta_database'
 # The table containing the raw data 
 table = "document"
 
-query = f"SELECT raw_data FROM {dataset_id}.{table} WHERE parsed_data IS NULL"
-query_job = client_bq.query(query)
-# Convert iterator to list (faster than list(iterator))
-sql_result = [*query_job.result()];
+# Connect to the BigQuery client
+client_bq = bigquery.Client(project_id)
+
+# Get the documentID (for identifier) and raw data from BigQuery for missing parsed_data
+query = f"""
+    SELECT document_id, raw_data 
+    FROM `{project_id}.{dataset_id}.{table}` 
+    WHERE parsed_data IS NULL"""
+
+query_result = client_bq.query(query).result()
+
+# Debug- convert result to list (faster than list(query_result))
+# result_list = [*query_result]
+# print(result_list)
