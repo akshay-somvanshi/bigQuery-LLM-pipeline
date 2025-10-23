@@ -1,6 +1,9 @@
 from transform import response
 from google.cloud import bigquery
 
+# Response variable will only hold reference to the value from the last iteration of the for 
+# loop in the transform.py file. Furthermore document_id is not parsed! 
+
 client_bq = bigquery.Client()
 
 # Update the table 

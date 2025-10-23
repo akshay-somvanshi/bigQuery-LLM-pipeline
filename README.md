@@ -25,7 +25,7 @@ The primary use case is to parse unstructured or semi-structured data (e.g., JSO
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url>
+    git clone https://github.com/akshay-somvanshi/bigQuery-LLM-pipeline.git
     cd bigQuery-LLM-pipeline
     ```
 
