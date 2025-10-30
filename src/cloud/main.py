@@ -19,7 +19,12 @@ query = f"""
 query_result = client_bq.query(query).result()
 
 # Connect to the Gemini API in VertexAI
-client_gemini = genai.Client(http_options=HttpOptions(api_version="v1"))
+client_gemini = genai.Client(
+    vertexai=True,
+    project="dash-beta-e61d0",
+    location="europe-west1", 
+    http_options=HttpOptions(api_version="v1")
+)
 
 for row in query_result:
     document_id = row.document_id 
