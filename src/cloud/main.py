@@ -63,7 +63,7 @@ for row in query_result:
                 bigquery.ScalarQueryParameter("document_id", "STRING", document_id)
             ]
         ),
-    )
+    ).result()
 
 # Close connection to client to avoid logging errors
 client_gemini.close()
